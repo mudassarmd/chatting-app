@@ -16,12 +16,8 @@ const peerServer = ExpressPeerServer(server, {
 app.use("/peerjs", peerServer);
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.redirect(`/${uuidv4()}`);
-});
-
-app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
+app.get("/:userName&:room", (req, res) => {
+  res.render("room.ejs", { roomId: req.params.room, userName: req.params.userName });
 });
 
 io.on("connection", (socket) => {

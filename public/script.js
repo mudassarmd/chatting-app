@@ -19,7 +19,7 @@ showChat.addEventListener("click", () => {
   document.querySelector(".header__back").style.display = "block";
 });
 
-const user = prompt("Enter your name");
+// const user = prompt("Enter your name");
 
 var peer = new Peer(undefined, {
   path: "/peerjs",
@@ -59,7 +59,7 @@ const connectToNewUser = (userId, stream) => {
 };
 
 peer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id, user);
+  socket.emit("join-room", ROOM_ID, id, USER_NAME);
 });
 
 const addVideoStream = (video, stream) => {
@@ -88,7 +88,7 @@ text.addEventListener("keydown", (e) => {
   }
 });
 
-const inviteButton = document.querySelector("#inviteButton");
+// const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
 muteButton.addEventListener("click", () => {
@@ -121,19 +121,19 @@ stopVideo.addEventListener("click", () => {
   }
 });
 
-inviteButton.addEventListener("click", (e) => {
-  prompt(
-    "Copy this link and send it to people you want to meet with",
-    window.location.href
-  );
-});
+// inviteButton.addEventListener("click", (e) => {
+//   prompt(
+//     "Copy this link and send it to people you want to meet with",
+//     window.location.href
+//   );
+// });
 
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
     messages.innerHTML +
     `<div class="message">
         <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
+          userName === USER_NAME ? "me" : userName
         }</span> </b>
         <span>${message}</span>
     </div>`;
